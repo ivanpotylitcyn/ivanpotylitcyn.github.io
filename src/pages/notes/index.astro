@@ -1,0 +1,154 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('notes');
+const notes = allNotes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Заметки — Иван Потылицын" description="Мысли об инженерии, образовании, фотографии, яхтинге и всём остальном">
+
+  <section class="notes-page">
+    <div class="container">
+      <div class="page-header">
+        <span class="section-label">Мысли и наблюдения</span>
+        <h1>Заметки</h1>
+        <p class="page-lead">
+          Пишу о том, что думаю. Об инженерии и образовании, о море и фотографии,
+          о жизни в целом. Более оперативно — в
+          <a href="https://t.me/potylitcyn" target="_blank" rel="noopener">Telegram</a>
+          и <a href="https://vk.com/potylitcynblog" target="_blank" rel="noopener">ВКонтакте</a>.
+        </p>
+      </div>
+
+      {notes.length > 0 ? (
+        <div class="notes-list">
+          {notes.map(note => (
+            <a href={`/notes/${note.slug}`} class="note-item">
+              <time class="note-date">
+                {note.data.date.toLocaleDateString('ru-RU', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </time>
+              <div class="note-body">
+                <h2 class="note-title">{note.data.title}</h2>
+                {note.data.description && (
+                  <p class="note-description">{note.data.description}</p>
+                )}
+              </div>
+              <span class="note-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="notes-empty">Заметки скоро появятся.</p>
+      )}
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .notes-page {
+    padding: 80px 0 120px;
+    min-height: 60vh;
+  }
+
+  .page-header {
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+
+  .page-lead {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+  }
+
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .note-item {
+    display: grid;
+    grid-template-columns: 180px 1fr 24px;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: background 0.15s;
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .note-item:hover {
+    background: var(--color-surface-blue);
+    text-decoration: none;
+  }
+
+  .note-item:hover .note-arrow {
+    color: var(--color-accent);
+    transform: translateX(4px);
+  }
+
+  .note-date {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .note-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+
+  .note-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .note-arrow {
+    font-size: 1.1rem;
+    color: var(--color-border);
+    transition: color 0.15s, transform 0.15s;
+    justify-self: end;
+  }
+
+  .notes-empty {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    padding: 48px 0;
+  }
+
+  @media (max-width: 640px) {
+    .note-item {
+      grid-template-columns: 1fr 24px;
+      gap: 8px;
+    }
+
+    .note-date {
+      grid-column: 1 / -1;
+      margin-bottom: -4px;
+    }
+  }
+</style>
