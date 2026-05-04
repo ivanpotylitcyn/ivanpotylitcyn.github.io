@@ -125,7 +125,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
               <div class="author-stats">
                 <div class="author-stat">
-                  <span class="author-stat-value">7</span>
+                  <span class="author-stat-value">8</span>
                   <span class="author-stat-label">публикаций</span>
                 </div>
                 <div class="author-stat-divider"></div>
@@ -153,7 +153,47 @@ import Layout from '../layouts/Layout.astro';
 
             <div class="pub-list">
 
-              <!-- 1. Тезисы 2024 -->
+              <!-- 1. Тезисы 2025 -->
+              <div class="pub-card">
+                <div class="pub-card-header">
+                  <span class="pub-badge">Тезисы доклада</span>
+                  <span class="pub-year-badge">2025</span>
+                  <span class="pub-not-ринц" title="Публикация есть в РИНЦ, но ещё не отражена в статистике профиля автора">не в статистике РИНЦ</span>
+                </div>
+                <h3 class="pub-title">
+                  Конструкция солнечного датчика на основе квадрантного фотодиода с диафрагмой из печатной платы
+                </h3>
+                <p class="pub-authors">
+                  Решетникова К.А., Гайнутдинов Р.И., Потылицын И.Ю.
+                </p>
+                <p class="pub-source">
+                  XLIX Академические чтения по космонавтике&nbsp;— сборник тезисов памяти академика С.П.&nbsp;Королёва.
+                  В 2-х томах. Москва, 28–31 января 2025&nbsp;г. Изд-во МГТУ им.&nbsp;Н.Э.&nbsp;Баумана.
+                  С.&nbsp;195–196.
+                </p>
+                <p class="pub-abstract">
+                  В работе предложена конструкция солнечного датчика на основе квадрантного фотодиода с диафрагмой
+                  из печатной платы. Конструкция позволяет резко снизить стоимость прибора за счёт использования
+                  широкодоступных и дешёвых компонентов без ущерба точности определения угла на Солнце.
+                  Отличительное свойство — гибкость, позволяющая интегрировать функцию определения вектора
+                  на Солнце в другой прибор, например в фотоэлектрическую панель.
+                </p>
+                <div class="pub-meta">
+                  <span class="pub-ids">
+                    <span class="pub-id-item">eLIBRARY: 82827413</span>
+                    <span class="pub-id-sep">·</span>
+                    <span class="pub-id-item">EDN: <a href="https://elibrary.ru/AOOIGU" class="pub-id-link" target="_blank" rel="noopener">AOOIGU</a></span>
+                    <span class="pub-id-sep">·</span>
+                    <span class="pub-id-item">УДК: 629.7.054.07</span>
+                  </span>
+                  <a href="/publications/2025-korolevskie-chteniya-solnechny-datchik.pdf" class="pub-download" download target="_blank" rel="noopener">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                  </a>
+                </div>
+              </div>
+
+              <!-- 2. Тезисы 2024 -->
               <div class="pub-card">
                 <div class="pub-card-header">
                   <span class="pub-badge">Тезисы доклада</span>
@@ -460,10 +500,6 @@ import Layout from '../layouts/Layout.astro';
                 <span class="achievement-label">Курс «Встраиваемые системы»</span>
                 <span class="achievement-link">t.me/mcumiptru →</span>
               </a>
-              <div class="achievement-item achievement-item--plain">
-                <span class="achievement-label">Ответственный исполнитель работ по поставке управляющих двигателей-маховиков для МКА</span>
-                <span class="achievement-sub">Опыт в области космической техники — 5 лет</span>
-              </div>
             </div>
           </div>
 
@@ -761,6 +797,19 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.8rem;
     color: var(--color-text-muted);
     font-weight: 500;
+  }
+
+  .pub-not-ринц {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: #92400e;
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: auto;
+    cursor: default;
   }
 
   .pub-title {
